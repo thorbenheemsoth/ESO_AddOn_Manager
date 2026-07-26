@@ -3,7 +3,7 @@ name = "wolfs-addon-manager"
 version = "1.0.0"
 description = "Wolf's AddOn Manager — a desktop GUI for managing Elder Scrolls Online add-ons"
 authors = ["Gianluca Panetta"]
-edition = "2026"
+edition = "2021"
 repository = "https://github.com/gspanetta/ESO_AddOn_Manager"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
