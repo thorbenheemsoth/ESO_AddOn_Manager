@@ -6,7 +6,7 @@ import sys
 import shutil
 import re
 
-ADDON_PATH = "/run/media/gianluca/7954e2ae-6c95-457b-9f0a-5f9e03a996a4/steam/steamapps/compatdata/306130/pfx/drive_c/users/steamuser/Documents/Elder Scrolls Online/live/AddOns/"
+ADDON_PATH = "dummy/path/to/AddOns"
 FILELIST_PATH = os.path.join(ADDON_PATH, "filelist.json")
 INSTALLED_ADDONS_PATH = os.path.join(ADDON_PATH, "installed_addons.json")
 CONFIG_INSTALL_DEPS = True
@@ -157,21 +157,31 @@ def search_and_choose(search_text):
     return file_info
 
 def extract_dependencies(directory):
-    file_path = os.path.join(ADDON_PATH, directory, directory + ".txt")
+    file_path_txt = os.path.join(ADDON_PATH, directory, directory + ".txt")
+    file_path_addon = os.path.join(ADDON_PATH, directory, directory + ".addon")
+
+    try:
+        file = open(file_path_addon, 'r')
+    except FileNotFoundError:
+        try:
+            file = open(file_path_txt, 'r')
+        except FileNotFoundError:
+            print("Could not find dependencies. Please install them manually!")
+    except Exception as ex:
+        print("Could not find dependencies. Error: ", ex)
     
     dependencies = []
     
-    with open(file_path, 'r') as file:
-        for line in file:
-            if line.startswith("## DependsOn:"):
-                dependency_line = line[len("## DependsOn:"):].strip()
-                dependencies_raw = dependency_line.split(' ')
-                dependencies = []
-                for d in dependencies_raw:
-                    if d.startswith("Lib"):
-                        d_clean = d.split('>')[0]
-                        dependencies.append(d_clean)
-                break
+    for line in file:
+        if line.startswith("## DependsOn:"):
+            dependency_line = line[len("## DependsOn:"):].strip()
+            dependencies_raw = dependency_line.split(' ')
+            dependencies = []
+            for d in dependencies_raw:
+                if d.startswith("Lib"):
+                    d_clean = d.split('>')[0]
+                    dependencies.append(d_clean)
+            break
 
     return dependencies
 
