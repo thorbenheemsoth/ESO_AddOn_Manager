@@ -247,10 +247,22 @@ pnpm tauri build --bundles appimage,deb,rpm
 
 ### Releasing a new version
 
+Release builds are automated by `.github/workflows/release.yml` when a tag that
+starts with `v` is pushed. The workflow publishes AppImage, deb, rpm, native Arch
+package, and Windows portable ZIP assets to a GitHub Release.
+
 1. Bump the version: `pnpm bump [x.y.z]`
 2. Update the lockfile: `pnpm check` (refreshes `Cargo.lock`)
 3. Tag the release commit `vX.Y.Z`
-4. Push the tag — the release workflow builds a draft release; publish when ready.
+4. Push the tag:
+
+   ```sh
+   git tag vX.Y.Z
+   git push origin vX.Y.Z
+   ```
+
+The GitHub Release is created automatically from the tag and includes generated
+release notes plus all built package assets.
 
 > Note: the `identifier` in `tauri.conf.json` (`com.eso.addonmanager`) defines the
 > app-data directory path. Changing it will move your config/DB and make the app
