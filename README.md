@@ -146,12 +146,123 @@ build manually:
 pnpm tauri build
 ```
 
+### Linux packages
+
+All Linux builds use Tauri/WebKitGTK. On Wayland, the app applies a built-in
+WebKitGTK DMA-BUF fallback from `src-tauri/src/lib.rs`, so the same renderer fix
+is used by AppImage, deb, rpm, and native Arch packages. To test the native
+DMA-BUF renderer on systems where it is stable, start the app with
+`WOLFS_ADDON_MANAGER_ENABLE_WEBKIT_DMABUF=1`.
+
+Install the common build prerequisites first:
+
+```sh
+pnpm i
+rustup default stable
+```
+
+#### AppImage (generic Linux)
+
+Use AppImage when you want one portable file that can run on many Linux
+distributions:
+
+```sh
+pnpm tauri build --bundles appimage
+```
+
+Output:
+
+```text
+src-tauri/target/release/bundle/appimage/Wolf's AddOn Manager_1.0.0_amd64.AppImage
+```
+
+#### Arch / Manjaro / EndeavourOS
+
+For Arch-based systems, prefer the native pacman package over the AppImage. It
+uses the system WebKitGTK stack directly and integrates with the package manager.
+
+Install build dependencies:
+
+```sh
+sudo pacman -S --needed base-devel rust nodejs pnpm webkit2gtk-4.1 gtk3 xdg-utils hicolor-icon-theme
+```
+
+Build and install:
+
+```sh
+cd packaging/arch
+./build-package.sh
+sudo pacman -U wolfs-addon-manager-1.0.0-1-x86_64.pkg.tar.zst
+```
+
+#### Debian / Ubuntu / Linux Mint
+
+Install Tauri's Linux prerequisites, then build a `.deb` package:
+
+```sh
+sudo apt install libwebkit2gtk-4.1-dev libgtk-3-dev libayatana-appindicator3-dev librsvg2-dev patchelf build-essential curl wget file
+pnpm tauri build --bundles deb
+```
+
+Output:
+
+```text
+src-tauri/target/release/bundle/deb/
+```
+
+Install the generated package with:
+
+```sh
+sudo apt install ./src-tauri/target/release/bundle/deb/*.deb
+```
+
+#### Fedora / Nobara / openSUSE / RHEL-like systems
+
+Install Tauri's Linux prerequisites, then build an `.rpm` package. Package names
+vary slightly by distribution; these Fedora/Nobara names are the known-good
+baseline:
+
+```sh
+sudo dnf install webkit2gtk4.1-devel gtk3-devel libappindicator-gtk3-devel librsvg2-devel patchelf gcc gcc-c++ make curl wget file
+pnpm tauri build --bundles rpm
+```
+
+Output:
+
+```text
+src-tauri/target/release/bundle/rpm/
+```
+
+Install the generated package with:
+
+```sh
+sudo dnf install ./src-tauri/target/release/bundle/rpm/*.rpm
+```
+
+To build all Tauri-provided Linux bundle formats in one run:
+
+```sh
+pnpm tauri build --bundles appimage,deb,rpm
+```
+
 ### Releasing a new version
+
+Release builds are automated by `.github/workflows/release.yml` when a tag that
+starts with `v` is pushed. The workflow publishes AppImage, deb, rpm, native Arch
+package, and Windows portable ZIP assets to a GitHub Release.
 
 1. Bump the version: `pnpm bump [x.y.z]`
 2. Update the lockfile: `pnpm check` (refreshes `Cargo.lock`)
 3. Tag the release commit `vX.Y.Z`
-4. Push the tag — the release workflow builds a draft release; publish when ready.
+4. Push the tag:
+
+   ```sh
+   git tag vX.Y.Z
+   git push origin vX.Y.Z
+   ```
+
+The GitHub Release is created automatically from the tag and includes generated
+release notes plus all built package assets.
 
 > Note: the `identifier` in `tauri.conf.json` (`com.eso.addonmanager`) defines the
 > app-data directory path. Changing it will move your config/DB and make the app
