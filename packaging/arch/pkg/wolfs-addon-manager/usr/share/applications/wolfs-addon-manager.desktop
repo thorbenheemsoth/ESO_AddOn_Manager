@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Wolf's AddOn Manager
+Comment=Manage Elder Scrolls Online add-ons
+Exec=wolfs-addon-manager
+Icon=wolfs-addon-manager
+Terminal=false
+Categories=Game;Utility;
+StartupNotify=true

@@ -24,7 +24,7 @@ makedepends=(
 )
 source=()
 sha256sums=()
-options=("!lto")
+options=("!debug" "!lto")
 
 build() {
   cd "${startdir}/../.."

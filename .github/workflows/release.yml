@@ -96,7 +96,7 @@ jobs:
         with:
           name: arch-package
           if-no-files-found: error
-          path: packaging/arch/*.pkg.tar.zst
+          path: packaging/arch/wolfs-addon-manager-[0-9]*.pkg.tar.zst
 
   windows-portable:
     name: Build Windows portable executable
