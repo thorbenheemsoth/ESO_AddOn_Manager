@@ -29,8 +29,7 @@ options=("!lto")
 build() {
   cd "${startdir}/../.."
   pnpm install --frozen-lockfile
-  pnpm build
-  cargo build --manifest-path src-tauri/Cargo.toml --release --locked
+  pnpm tauri build --no-bundle
 }
 
 package() {
