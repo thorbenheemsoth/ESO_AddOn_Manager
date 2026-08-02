@@ -150,7 +150,9 @@ pnpm tauri build
 
 All Linux builds use Tauri/WebKitGTK. On Wayland, the app applies a built-in
 WebKitGTK DMA-BUF fallback from `src-tauri/src/lib.rs`, so the same renderer fix
-is used by AppImage, deb, rpm, and native Arch packages.
+is used by AppImage, deb, rpm, and native Arch packages. To test the native
+DMA-BUF renderer on systems where it is stable, start the app with
+`WOLFS_ADDON_MANAGER_ENABLE_WEBKIT_DMABUF=1`.
 
 Install the common build prerequisites first:
 
