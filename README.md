@@ -146,6 +146,21 @@ build manually:
 pnpm tauri build
 ```
 
+### Native Arch package
+
+For Arch/Wayland systems, prefer the native pacman package over the AppImage. It
+uses the system WebKitGTK stack directly and still applies the built-in Wayland
+DMA-BUF fallback from `src-tauri/src/lib.rs`.
+
+```sh
+cd packaging/arch
+./build-package.sh
+sudo pacman -U wolfs-addon-manager-1.0.0-1-x86_64.pkg.tar.zst
+```
+
+The package installs `wolfs-addon-manager`, a desktop entry, hicolor icons, the
+README, and the project license.
+
 ### Releasing a new version
 
 1. Bump the version: `pnpm bump [x.y.z]`
