@@ -96,7 +96,7 @@ jobs:
         with:
           name: arch-package
           if-no-files-found: error
-          path: packaging/arch/wolfs-addon-manager-[0-9]*.pkg.tar.zst
+          path: packaging/arch/chaotic-addon-manager-[0-9]*.pkg.tar.zst
 
   windows-portable:
     name: Build Windows portable executable
@@ -129,8 +129,8 @@ jobs:
         shell: pwsh
         run: |
           Compress-Archive `
-            -Path src-tauri/target/release/wolfs-addon-manager.exe `
-            -DestinationPath "wolfs-addon-manager-${{ github.ref_name }}-windows-portable.zip" `
+            -Path src-tauri/target/release/chaotic-addon-manager.exe `
+            -DestinationPath "chaotic-addon-manager-${{ github.ref_name }}-windows-portable.zip" `
             -Force
 
       - name: Upload Windows portable artifact
@@ -138,7 +138,7 @@ jobs:
         with:
           name: windows-portable
           if-no-files-found: error
-          path: "wolfs-addon-manager-${{ github.ref_name }}-windows-portable.zip"
+          path: "chaotic-addon-manager-${{ github.ref_name }}-windows-portable.zip"
 
   publish-release:
     name: Publish GitHub release
@@ -157,7 +157,7 @@ jobs:
       - name: Publish release
         uses: softprops/action-gh-release@v2
         with:
-          name: "Wolf's AddOn Manager ${{ github.ref_name }}"
+          name: "Chaotic Addon Manager ${{ github.ref_name }}"
           tag_name: ${{ github.ref_name }}
           generate_release_notes: true
           files: release-assets/**

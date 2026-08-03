@@ -1,4 +1,4 @@
-# Wolf's AddOn Manager
+# Chaotic Addon Manager
 
 A desktop GUI for browsing, installing, updating, and removing
 [Elder Scrolls Online](https://www.elderscrollsonline.com/) add-ons, sourced from
@@ -152,7 +152,7 @@ All Linux builds use Tauri/WebKitGTK. On Wayland, the app applies a built-in
 WebKitGTK DMA-BUF fallback from `src-tauri/src/lib.rs`, so the same renderer fix
 is used by AppImage, deb, rpm, and native Arch packages. To test the native
 DMA-BUF renderer on systems where it is stable, start the app with
-`WOLFS_ADDON_MANAGER_ENABLE_WEBKIT_DMABUF=1`.
+`CHAOTIC_ADDON_MANAGER_ENABLE_WEBKIT_DMABUF=1`.
 
 Install the common build prerequisites first:
 
@@ -173,7 +173,7 @@ pnpm tauri build --bundles appimage
 Output:
 
 ```text
-src-tauri/target/release/bundle/appimage/Wolf's AddOn Manager_1.0.0_amd64.AppImage
+src-tauri/target/release/bundle/appimage/Chaotic Addon Manager_1.0.0_amd64.AppImage
 ```
 
 #### Arch / Manjaro / EndeavourOS
@@ -192,7 +192,7 @@ Build and install:
 ```sh
 cd packaging/arch
 ./build-package.sh
-sudo pacman -U wolfs-addon-manager-1.0.0-1-x86_64.pkg.tar.zst
+sudo pacman -U chaotic-addon-manager-1.0.0-1-x86_64.pkg.tar.zst
 ```
 
 #### Debian / Ubuntu / Linux Mint

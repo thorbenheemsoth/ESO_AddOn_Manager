@@ -318,6 +318,22 @@ dependencies = [
 ]
 
 [[package]]
+name = "chaotic-addon-manager"
+version = "1.0.0"
+dependencies = [
+ "serde",
+ "serde_json",
+ "tauri",
+ "tauri-build",
+ "tauri-plugin-dialog",
+ "tauri-plugin-fs",
+ "tauri-plugin-http",
+ "tauri-plugin-prevent-default",
+ "tauri-plugin-shell",
+ "tauri-plugin-store",
+]
+
+[[package]]
 name = "chrono"
 version = "0.4.44"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -5539,22 +5555,6 @@ dependencies = [
  "serde_json",
  "unicode-xid",
  "wasmparser",
-]
-
-[[package]]
-name = "wolfs-addon-manager"
-version = "1.0.0"
-dependencies = [
- "serde",
- "serde_json",
- "tauri",
- "tauri-build",
- "tauri-plugin-dialog",
- "tauri-plugin-fs",
- "tauri-plugin-http",
- "tauri-plugin-prevent-default",
- "tauri-plugin-shell",
- "tauri-plugin-store",
 ]
 
 [[package]]

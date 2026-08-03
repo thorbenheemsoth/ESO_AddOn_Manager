@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Chaotic Addon Manager
+Comment=Manage Elder Scrolls Online add-ons
+Exec=chaotic-addon-manager
+Icon=chaotic-addon-manager
+Terminal=false
+Categories=Game;Utility;
+StartupNotify=true

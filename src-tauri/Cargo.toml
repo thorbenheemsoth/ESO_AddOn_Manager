@@ -1,7 +1,7 @@
 [package]
-name = "wolfs-addon-manager"
+name = "chaotic-addon-manager"
 version = "1.0.0"
-description = "Wolf's AddOn Manager — a desktop GUI for managing Elder Scrolls Online add-ons"
+description = "Chaotic Addon Manager — a desktop GUI for managing Elder Scrolls Online add-ons"
 authors = ["Gianluca Panetta"]
 edition = "2021"
 repository = "https://github.com/gspanetta/ESO_AddOn_Manager"
