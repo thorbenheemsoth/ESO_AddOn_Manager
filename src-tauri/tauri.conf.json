@@ -1,6 +1,6 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "Wolf's AddOn Manager",
+  "productName": "Chaotic Addon Manager",
   "version": "1.0.0",
   "identifier": "com.eso.addonmanager",
   "build": {
@@ -12,7 +12,7 @@
   "app": {
     "windows": [
       {
-        "title": "Wolf's AddOn Manager",
+        "title": "Chaotic Addon Manager",
         "width": 1100,
         "height": 750
       }

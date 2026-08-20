@@ -10,7 +10,7 @@ onMounted(() => {
   <main class="min-h-screen flex flex-col">
     <header class="eso-panel border-b border-eso-edge-bright">
       <div class="flex items-center gap-3 px-5 pt-4">
-        <h1 class="!text-xl !my-0 text-gold-bright">Wolf&rsquo;s AddOn Manager</h1>
+        <h1 class="!text-xl !my-0 text-gold-bright">Chaotic Addon Manager</h1>
         <span v-if="store.error" class="ml-auto text-sm text-blood-bright truncate max-w-[50%]" :title="store.error">
           {{ store.error }}
           <button class="text-parchment-dim underline ml-1" @click="store.clearError">dismiss</button>
